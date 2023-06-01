@@ -1,24 +1,18 @@
 package com.codecool;
 
+public class Battleship {
+    private Display display;
+    private Input input;
+    private Game game;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
-
-public class Battleship { // ta klasa zawiera logikę gry Battleship
-    private Display display; // będzie przechowywać obiekty klasy display
-    private Input input; // będzie przechowywać obiekty klasy input
-    private Game game; // będzie przechowywać obiekty klasy game
-
-    public Battleship() {           // Konstruktor klasy Battleship. Tworzy on nowe obiekty display, input i game, używając ich konstruktorów domyślnych.
-                                    // Inicjalizuje te pola nowo utworzonymi obiektami.
-        display = new Display();
-        input = new Input();
+    public Battleship() {
         game = new Game();
+        display = new Display(game);
+        game.setDisplay(display);
+        input = new Input();
     }
 
-    public void run() { // void, więc nie zwraca wartości. ta metoda odpowiada za główną logikę gry
+    public void run() {
         while (true) {
             display.printMainMenu();
             int choice = input.getMainMenuChoice();
@@ -31,15 +25,14 @@ public class Battleship { // ta klasa zawiera logikę gry Battleship
                     display.printHighScores();
                     break;
                 case 3:
-                    return; // przy wyborze zakończenia programu
+                    return;
                 default:
                     display.printInvalidChoice();
             }
         }
     }
 
-    public static void main(String[] args) {//Metoda main jest punktem wejścia do programu. Tworzy nowy obiekt klasy Battleship
-                                            // o nazwie battleship i wywołuje na nim metodę run(), rozpoczynając działanie gry.
+    public static void main(String[] args) {
         Battleship battleship = new Battleship();
         battleship.run();
     }

@@ -4,8 +4,11 @@ import java.util.Scanner;
 
 class Input {
     private Scanner scanner;
+    private boolean hit;
+
     public Input() {
         scanner = new Scanner(System.in);
+        hit = false;
     }
 
     public int getMainMenuChoice() {
@@ -21,6 +24,7 @@ class Input {
             System.out.println("Invalid choice. Please try again.");
         }
     }
+
     public int getMoveX() {
         System.out.print("Enter X coordinate: ");
         while (true) {
@@ -30,7 +34,7 @@ class Input {
                     return x;
                 }
             } catch (NumberFormatException e) {
-                // Ignoruj i kontynuuj pętlę
+                // Ignore and continue loop
             }
             System.out.println("Invalid coordinate. Please try again.");
         }
@@ -45,13 +49,28 @@ class Input {
                     return y;
                 }
             } catch (NumberFormatException e) {
-                // Ignoruj i kontynuuj pętlę
+                // Ignore and continue loop
             }
             System.out.println("Invalid coordinate. Please try again.");
         }
     }
 
+    public boolean isHit() {
+        return hit;
+    }
+
+    public void setHit(boolean hit) {
+        this.hit = hit;
+    }
+
     public void close() {
         scanner.close();
+    }
+
+    public void markMiss(int x, int y) {
+        // Implementacja oznaczania nietrafionego strzału na planszy
+        // Możesz dostosować tę implementację do swoich potrzeb
+        // Tutaj dodajemy znak "-" na planszy i wyświetlamy komunikat o nietrafionym strzale
+        System.out.println("You missed!");
     }
 }

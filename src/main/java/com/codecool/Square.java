@@ -11,7 +11,11 @@ class Square {
         status = SquareStatus.EMPTY;
     }
 
-    public String getCharacter() {
-        return status.getCharacter();
+    public SquareStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(SquareStatus status) {
+        this.status = status;
     }
 }
