@@ -73,4 +73,15 @@ class Input {
         // Tutaj dodajemy znak "-" na planszy i wyświetlamy komunikat o nietrafionym strzale
         System.out.println("You missed!");
     }
+
+    public void markHit(int x, int y) {
+        // Implementacja oznaczania trafionego strzału na planszy
+        // Możesz dostosować tę implementację do swoich potrzeb
+        // Tutaj dodajemy znak "X" na planszy i wyświetlamy komunikat o trafionym strzale
+        System.out.println("You hit a ship, please continue");
+    }
+
+    public void gameWon() {
+        System.out.println("You won the game!");
+    }
 }

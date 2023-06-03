@@ -12,16 +12,16 @@ public class BoardFactory {
     }
 
     public Board randomPlacement() {
-        Board board = new Board();
+        Board board = new Board(); //Tworzy nowy obiekt klasy Board, który będzie planszą gry.
 
-        for (ShipType shipType : ShipType.values()) {
-            boolean placed = false;
-            while (!placed) {
-                int x = random.nextInt(BOARD_SIZE);
+        for (ShipType shipType : ShipType.values()) {//dla każdej wartośc typu ShipType wykonuje poniższą pętlę
+            boolean placed = false;//zmienna placed będzie zawierać info, czy statek jest umieszczony lub nie na planszy
+            while (!placed) { //pętla while będzie wykonywana dopóki zmienna placed nie będzie prawdziwa, czyli dopóki statek nie zostanie umieszczony na planszy.
+                int x = random.nextInt(BOARD_SIZE); //losowa wartość x od zera do BOARD_SIZE-1
                 int y = random.nextInt(BOARD_SIZE);
-                boolean horizontal = random.nextBoolean();
+                boolean horizontal = random.nextBoolean(); //losowa wartość typu boolean, która określa orientację statku
 
-                if (canPlaceShip(board, x, y, shipType, horizontal)) {
+                if (canPlaceShip(board, x, y, shipType, horizontal)) { //Sprawdza, czy statek może być umieszczony na planszy na podstawie wywołania metody canPlaceShip()
                     placeShip(board, x, y, shipType, horizontal);
                     placed = true;
                 }

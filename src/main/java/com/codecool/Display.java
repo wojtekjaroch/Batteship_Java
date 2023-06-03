@@ -26,13 +26,13 @@ class Display {
         Board boardPlayer2 = game.getBoardPlayer2();
 
         System.out.println("=== BOARD ===");
-        System.out.println("   A B C D E F G H I J");
+        System.out.println("   0 1 2 3 4 5 6 7 8 9");
 
         for (int i = 0; i < 10; i++) {
             if (i < 9) {
-                System.out.print((i + 1) + "  ");
+                System.out.print((i) + "  ");
             } else {
-                System.out.print((i + 1) + " ");
+                System.out.print((i) + "  ");
             }
 
             for (int j = 0; j < 10; j++) {
@@ -49,6 +49,24 @@ class Display {
             System.out.println();
         }
     }
+
+
+
+    private String getStatusCharacter(SquareStatus status) {
+        switch (status) {
+            case EMPTY:
+                return "-";
+            case SHIP:
+                return "S";
+            case HIT:
+                return "X";
+            case MISSED:
+                return "O";
+            default:
+                return "-";
+        }
+    }
+
 
     public void printGameplay() {
         // Printuje informację o gameplay

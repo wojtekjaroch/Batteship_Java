@@ -1,5 +1,6 @@
 package com.codecool;
 
+
 import java.util.Random;
 
 public class Game {
@@ -32,10 +33,7 @@ public class Game {
 
     public void startNewGame() {
         boardPlayer1 = boardFactory.randomPlacement();
-        // TODO: dołożyć logikę randomowego rozłożenia dla gracza player1
-
         boardPlayer2 = boardFactory.randomPlacement();
-        // TODO: dołożyć logikę randomowego rozłożenia dla gracza player2
 
         while (!gameOver()) {
             if (currentPlayer1) {
@@ -45,6 +43,7 @@ public class Game {
                 display.printMessage(currentPlayer1);
                 display.printBoard();
             }
+
             display.printGameplay();
 
             int x = input.getMoveX();
@@ -52,24 +51,37 @@ public class Game {
 
             if (currentPlayer1) {
                 player1.makeMove(boardPlayer2, x, y);
-                if (!input.isHit()) {
+                if (boardPlayer2.getCell(x, y).getStatus() == SquareStatus.HIT) {
+                    System.out.println("You hit a ship, please continue");
+                    input.setHit(true);
+                } else {
+                    System.out.println("You missed!");
+                    input.setHit(false);
                     currentPlayer1 = false;
                 }
             } else {
                 player2.makeMove(boardPlayer1, x, y);
-                if (!input.isHit()) {
+                if (boardPlayer1.getCell(x, y).getStatus() == SquareStatus.HIT) {
+                    System.out.println("You hit a ship, please continue");
+                    input.setHit(true);
+                } else {
+                    System.out.println("You missed!");
+                    input.setHit(false);
                     currentPlayer1 = true;
                 }
             }
         }
 
-        boolean player1Won = player1.isAlive();
+        boolean player1Won = player2.allShipsSunk(boardPlayer1);
         display.printGameOver(player1Won);
     }
 
     private boolean gameOver() {
-        // TODO: dopisać warunek do Game over
-        return false;
+        if (currentPlayer1) {
+            return player2.allShipsSunk(boardPlayer1);
+        } else {
+            return player1.allShipsSunk(boardPlayer2);
+        }
     }
 
     public Board getBoardPlayer1() {
