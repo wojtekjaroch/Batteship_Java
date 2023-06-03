@@ -7,16 +7,6 @@ class Board {
         ocean = new Square[10][10];
         initializeOcean();
     }
-    public boolean allShipsSunk() {
-        for (int x = 0; x < 10; x++) {
-            for (int y = 0; y < 10; y++) {
-                if (ocean[x][y].getStatus() == SquareStatus.SHIP) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 
     private void initializeOcean() {
         for (int x = 0; x < 10; x++) {

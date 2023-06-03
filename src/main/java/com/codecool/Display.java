@@ -3,13 +3,6 @@ package com.codecool;
 class Display {
     private Game game;
 
-    public Display() {
-        // Konstruktor bezparametrowy
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }
     public Display(Game game) {
         this.game = game;
     }
@@ -51,23 +44,6 @@ class Display {
     }
 
 
-
-    private String getStatusCharacter(SquareStatus status) {
-        switch (status) {
-            case EMPTY:
-                return "-";
-            case SHIP:
-                return "S";
-            case HIT:
-                return "X";
-            case MISSED:
-                return "O";
-            default:
-                return "-";
-        }
-    }
-
-
     public void printGameplay() {
         // Printuje informację o gameplay
     }
@@ -97,20 +73,4 @@ class Display {
         System.out.println("Invalid choice. Please try again.");
     }
 
-    public void markMiss(int x, int y) {
-        Board boardPlayer1 = game.getBoardPlayer1();
-        Board boardPlayer2 = game.getBoardPlayer2();
-
-        Square square;
-        if (game.isCurrentPlayer1()) {
-            square = boardPlayer1.getCell(x, y);
-        } else {
-            square = boardPlayer2.getCell(x, y);
-        }
-
-        if (square.getStatus() == SquareStatus.EMPTY) {
-            square.setStatus(SquareStatus.MISSED);
-        }
-        System.out.println("You missed!");
-    }
 }

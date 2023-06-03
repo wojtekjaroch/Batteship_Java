@@ -21,10 +21,6 @@ class Player {
         }
     }
 
-    public boolean isAlive() {
-        // TODO: czy gracz jest wciąż żywy
-        return false;
-    }
     public boolean allShipsSunk(Board board) {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
